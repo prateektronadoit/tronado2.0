@@ -40,10 +40,7 @@ function App() {
       
       {/* Animated Background */}
       <div className="fixed inset-0 z-0">
-        <StarsBackground 
-          showLightning={true} 
-          lightningFrequency={8000}
-        />
+        <StarsBackground />
         <ShootingStars 
           starColor="#9D4EDD" 
           trailColor="#6A0DAD" 

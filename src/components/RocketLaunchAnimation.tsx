@@ -9,8 +9,10 @@ export const RocketLaunchAnimation = ({ onAnimationComplete }: { onAnimationComp
   const [showContent, setShowContent] = useState(false);
 
   useEffect(() => {
-    // Rocket animation timing
-    const rocketTimer = setTimeout(() => {
+    // Show rocket with smoke immediately
+    
+    // After rocket is visible, show the crack
+    const crackTimer = setTimeout(() => {
       setShowCrack(true);
       
       // After crack appears, show text
@@ -24,18 +26,18 @@ export const RocketLaunchAnimation = ({ onAnimationComplete }: { onAnimationComp
           // Animation complete callback
           const completeTimer = setTimeout(() => {
             onAnimationComplete();
-          }, 1000);
+          }, 1200);
           
           return () => clearTimeout(completeTimer);
-        }, 800);
+        }, 1500);
         
         return () => clearTimeout(contentTimer);
-      }, 600);
+      }, 1200);
       
       return () => clearTimeout(textTimer);
-    }, 1500); // Time for rocket to reach middle of screen
+    }, 2000); // Longer time to see rocket with smoke
     
-    return () => clearTimeout(rocketTimer);
+    return () => clearTimeout(crackTimer);
   }, [onAnimationComplete]);
 
   return (
@@ -117,22 +119,22 @@ export const RocketLaunchAnimation = ({ onAnimationComplete }: { onAnimationComp
         )}
       </AnimatePresence>
       
-      {/* Horizontal Split Line Animation */}
+      {/* Vertical Opening Split Line Animation */}
       <AnimatePresence>
         {showCrack && (
           <motion.div
-            className="absolute flex flex-row items-center justify-center"
+            className="absolute flex flex-col items-center justify-center"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.3 }}
             style={{ width: '100%', height: '100%' }}
           >
-            {/* Left half of the line */}
+            {/* Top half of the line */}
             <motion.div
-              className="h-[8px] rounded-l-full"
-              initial={{ width: "40vw", x: 0 }}
+              className="w-[80vw] h-[8px] rounded-t-full mb-[1px]"
+              initial={{ y: 0 }}
               animate={{ 
-                x: showContent ? "-100vw" : 0,
+                y: showContent ? "-50vh" : 0,
                 transition: { 
                   duration: 1.2, 
                   ease: "easeInOut",
@@ -140,17 +142,17 @@ export const RocketLaunchAnimation = ({ onAnimationComplete }: { onAnimationComp
                 }
               }}
               style={{
-                background: "linear-gradient(90deg, rgba(106,13,173,0.1) 0%, rgba(157,78,221,0.9) 100%)",
+                background: "linear-gradient(90deg, rgba(106,13,173,0.1) 0%, rgba(157,78,221,0.9) 50%, rgba(106,13,173,0.1) 100%)",
                 boxShadow: "0 0 20px rgba(157,78,221,0.8)"
               }}
             />
             
-            {/* Right half of the line */}
+            {/* Bottom half of the line */}
             <motion.div
-              className="h-[8px] rounded-r-full"
-              initial={{ width: "40vw", x: 0 }}
+              className="w-[80vw] h-[8px] rounded-b-full mt-[1px]"
+              initial={{ y: 0 }}
               animate={{ 
-                x: showContent ? "100vw" : 0,
+                y: showContent ? "50vh" : 0,
                 transition: { 
                   duration: 1.2, 
                   ease: "easeInOut",
@@ -158,7 +160,7 @@ export const RocketLaunchAnimation = ({ onAnimationComplete }: { onAnimationComp
                 }
               }}
               style={{
-                background: "linear-gradient(90deg, rgba(157,78,221,0.9) 0%, rgba(106,13,173,0.1) 100%)",
+                background: "linear-gradient(90deg, rgba(106,13,173,0.1) 0%, rgba(157,78,221,0.9) 50%, rgba(106,13,173,0.1) 100%)",
                 boxShadow: "0 0 20px rgba(157,78,221,0.8)"
               }}
             />
@@ -187,7 +189,7 @@ export const RocketLaunchAnimation = ({ onAnimationComplete }: { onAnimationComp
               }}
               transition={{ duration: 1.5, repeat: Infinity, repeatType: "reverse" }}
             >
-              TRDO GLOBAL
+              TRDO GOES GLOBAL
             </motion.h1>
           </motion.div>
         )}
