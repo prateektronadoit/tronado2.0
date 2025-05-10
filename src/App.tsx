@@ -1,13 +1,43 @@
 // App Component
+import { useState, useEffect } from 'react'
 import './App.css'
 import { ShootingStars } from './components/ui/shooting-stars'
 import { StarsBackground } from './components/ui/stars-background'
 import { Header } from './components/Header'
 import HeroSection from './components/HeroSection'
+import { RocketLaunchAnimation } from './components/RocketLaunchAnimation'
+import { motion, AnimatePresence } from 'framer-motion'
 
 function App() {
+  const [showAnimation, setShowAnimation] = useState(true)
+  const [showContent, setShowContent] = useState(false)
+  
+  // Set a timeout to prevent animation from running if there are issues
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      if (showAnimation) {
+        setShowAnimation(false)
+        setShowContent(true)
+      }
+    }, 10000) // Fallback timer of 10 seconds
+    
+    return () => clearTimeout(timeout)
+  }, [showAnimation])
+
+  const handleAnimationComplete = () => {
+    setShowAnimation(false)
+    setShowContent(true)
+  }
+
   return (
     <div className="min-h-screen w-full relative bg-black overflow-x-hidden">
+      {/* Launch Animation */}
+      <AnimatePresence>
+        {showAnimation && (
+          <RocketLaunchAnimation onAnimationComplete={handleAnimationComplete} />
+        )}
+      </AnimatePresence>
+      
       {/* Animated Background */}
       <div className="fixed inset-0 z-0">
         <StarsBackground 
@@ -23,10 +53,19 @@ function App() {
       </div>
       
       {/* Main Content */}
-      <div className="relative z-10">
-        <Header />
-        <HeroSection />
-      </div>
+      <AnimatePresence>
+        {showContent && (
+          <motion.div 
+            className="relative z-10"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8 }}
+          >
+            <Header />
+            <HeroSection />
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   )
 }
