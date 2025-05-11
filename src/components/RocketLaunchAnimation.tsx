@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import rocketImg from '../assets/rocket.png';
+import rocketImg from '../assets/Logo3.png';
 
 export const RocketLaunchAnimation = ({ onAnimationComplete }: { onAnimationComplete: () => void }) => {
-  const [showRocket] = useState(true);
+  const [showRocket, setShowRocket] = useState(true);
   const [showCrack, setShowCrack] = useState(false);
   const [showText, setShowText] = useState(false);
   const [showContent, setShowContent] = useState(false);
@@ -11,107 +11,66 @@ export const RocketLaunchAnimation = ({ onAnimationComplete }: { onAnimationComp
   useEffect(() => {
     // Show rocket with smoke immediately
     
-    // After rocket is visible, show the crack
-    const crackTimer = setTimeout(() => {
-      setShowCrack(true);
+    // After rocket is visible for a while, hide it and show the crack
+    const rocketHideTimer = setTimeout(() => {
+      setShowRocket(false);
       
-      // After crack appears, show text
-      const textTimer = setTimeout(() => {
-        setShowText(true);
+      // After rocket is hidden, show the crack
+      const crackTimer = setTimeout(() => {
+        setShowCrack(true);
         
-        // After text appears, expand content and complete animation
-        const contentTimer = setTimeout(() => {
-          setShowContent(true);
+        // After crack appears, show text
+        const textTimer = setTimeout(() => {
+          setShowText(true);
           
-          // Animation complete callback
-          const completeTimer = setTimeout(() => {
-            onAnimationComplete();
-          }, 1200);
+          // After text appears, expand content and complete animation
+          const contentTimer = setTimeout(() => {
+            setShowContent(true);
+            
+            // Animation complete callback
+            const completeTimer = setTimeout(() => {
+              onAnimationComplete();
+            }, 1200);
+            
+            return () => clearTimeout(completeTimer);
+          }, 1500);
           
-          return () => clearTimeout(completeTimer);
-        }, 1500);
+          return () => clearTimeout(contentTimer);
+        }, 1200);
         
-        return () => clearTimeout(contentTimer);
-      }, 1200);
+        return () => clearTimeout(textTimer);
+      }, 500); // Shorter time after rocket is hidden
       
-      return () => clearTimeout(textTimer);
-    }, 2000); // Longer time to see rocket with smoke
+      return () => clearTimeout(crackTimer);
+    }, 2500); // Time for rocket to reach top and hide
     
-    return () => clearTimeout(crackTimer);
+    return () => clearTimeout(rocketHideTimer);
   }, [onAnimationComplete]);
 
   return (
-    <div className="fixed inset-0 flex items-center justify-center z-50 overflow-hidden">
+    <div className="fixed inset-0 flex items-center justify-center z-50 overflow-hidden bg-white">
       {/* Rocket Animation */}
       <AnimatePresence>
         {showRocket && (
           <motion.div
             className="absolute"
-            initial={{ bottom: "-10%", right: "5%", opacity: 0 }}
-            animate={{ bottom: "50%", right: "50%", opacity: 1 }}
+            initial={{ bottom: "-10%", left: "50%", opacity: 0, x: "-50%" }}
+            animate={{ bottom: "120%", left: "50%", opacity: 1, x: "-50%" }}
             exit={{ opacity: 0 }}
             transition={{ 
-              duration: 1.5, 
+              duration: 2.5, 
               ease: "easeOut" 
             }}
           >
             {/* Rocket image */}
             <motion.div className="relative">
-              {/* Main smoke trail behind rocket - from opposite direction */}
-              <motion.div 
-                className="absolute w-[400px] h-[80px]"
-                style={{
-                  background: "linear-gradient(to left, transparent, rgba(255,255,255,0.7), rgba(255,165,0,0.5))",
-                  left: "40%",
-                  top: "35%",
-                  borderRadius: "50%",
-                  transformOrigin: "center",
-                  zIndex: -1,
-                  filter: "blur(12px)"
-                }}
-                animate={{
-                  opacity: [0.4, 0.8, 0.4],
-                  width: ["350px", "400px", "350px"]
-                }}
-                transition={{
-                  repeat: Infinity,
-                  duration: 1.8,
-                  repeatType: "mirror"
-                }}
-              />
-              
-              {/* Secondary smoke particles - from opposite direction */}
-              <motion.div 
-                className="absolute w-[300px] h-[50px]"
-                style={{
-                  background: "linear-gradient(to left, transparent, rgba(255,255,255,0.5), rgba(255,165,0,0.3))",
-                  left: "45%",
-                  top: "38%",
-                  borderRadius: "50%",
-                  transformOrigin: "center",
-                  zIndex: -1,
-                  filter: "blur(8px)"
-                }}
-                animate={{
-                  opacity: [0.3, 0.7, 0.3],
-                  width: ["250px", "320px", "250px"]
-                }}
-                transition={{
-                  repeat: Infinity,
-                  duration: 2.2,
-                  repeatType: "mirror",
-                  delay: 0.4
-                }}
-              />
-
-              {/* Rocket image on top of smoke */}
+              {/* Logo image without smoke effects */}
               <motion.img
                 src={rocketImg}
-                alt="Rocket"
-                className="w-40 h-auto relative z-10"
+                alt="TRDO Logo"
+                className="w-72 h-auto relative z-10"
                 style={{ 
-                  filter: "drop-shadow(0 0 15px rgba(255, 165, 0, 0.7))",
-                  transform: "rotate(-45deg)"
+                  filter: "drop-shadow(0 0 15px rgba(255, 165, 0, 0.7))"
                 }}
               />
             </motion.div>
@@ -178,7 +137,7 @@ export const RocketLaunchAnimation = ({ onAnimationComplete }: { onAnimationComp
             transition={{ duration: 0.5, ease: "easeOut" }}
           >
             <motion.h1
-              className="text-4xl font-bold text-white"
+              className="text-4xl font-bold text-purple-800"
               animate={{ 
                 scale: [1, 1.1, 1],
                 textShadow: [

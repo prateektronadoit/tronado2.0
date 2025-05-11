@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { cn } from '../lib/utils';
 import polygonImage from '../assets/polygon.png';
+import astroGif from '../assets/astrobg.gif';
 
 interface HeroSectionProps {
   className?: string;
@@ -25,17 +26,15 @@ const HeroSection = ({ className }: HeroSectionProps = {}) => {
       "relative flex flex-col items-center justify-center min-h-[70vh] py-20 overflow-hidden",
       className
     )}>
-      {/* Text content */}
+      {/* GIF content */}
       <div className="relative z-20 text-center px-4 max-w-4xl mx-auto">
-        <h1 className="text-5xl md:text-7xl font-bold bg-gradient-to-r from-blue-400 via-blue-300 to-blue-500 text-transparent bg-clip-text mb-6">
-          2.0 Flash
-        </h1>
-        <p className="text-lg md:text-xl text-gray-300 max-w-2xl mx-auto mb-10">
-          Experience the next generation of decentralized technology with our powerful and innovative blockchain solution.
-        </p>
-        <button className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-medium py-3 px-8 rounded-full text-lg transition-all duration-300 transform hover:scale-105">
-          Get Started
-        </button>
+        <div className="relative rounded-xl overflow-hidden shadow-2xl w-full max-w-md mx-auto hover:scale-105 transition-all duration-300">
+          <img
+            src={astroGif}
+            alt="Space Animation"
+            className="w-full"
+          />
+        </div>
       </div>
 
       {/* Glowing Polygon */}
@@ -46,7 +45,7 @@ const HeroSection = ({ className }: HeroSectionProps = {}) => {
             ref={polygonRef}
             src={polygonImage} 
             alt="Polygon" 
-            className="relative w-60 h-60 md:w-80 md:h-80 object-contain z-10 transition-all duration-1000 ease-in-out"
+            className="relative w-96 h-96 md:w-[500px] md:h-[500px] object-contain z-10 transition-all duration-1000 ease-in-out"
           />
         </div>
       </div>
