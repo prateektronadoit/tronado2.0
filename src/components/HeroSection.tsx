@@ -23,12 +23,12 @@ const HeroSection = ({ className }: HeroSectionProps = {}) => {
 
   return (
     <section className={cn(
-      "relative flex flex-col items-center justify-center min-h-[70vh] py-20 overflow-hidden",
+      "relative flex flex-col items-center justify-center min-h-[100vh] py-32 overflow-hidden",
       className
     )}>
       {/* GIF content */}
-      <div className="relative z-20 text-center px-4 max-w-4xl mx-auto">
-        <div className="relative rounded-xl overflow-hidden shadow-2xl w-full max-w-md mx-auto hover:scale-105 transition-all duration-300">
+      <div className="relative z-20 text-center px-4 max-w-6xl mx-auto">
+        <div className="relative rounded-xl overflow-hidden shadow-2xl w-full max-w-2xl mx-auto hover:scale-105 transition-all duration-300">
           <img
             src={astroGif}
             alt="Space Animation"
@@ -40,12 +40,12 @@ const HeroSection = ({ className }: HeroSectionProps = {}) => {
       {/* Glowing Polygon */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
         <div className="relative">
-          <div className="absolute -inset-16 bg-blue-500/20 rounded-full blur-3xl animate-pulse opacity-70 animation-delay-1000"></div>
+          <div className="absolute -inset-20 bg-blue-500/20 rounded-full blur-3xl animate-pulse opacity-70 animation-delay-1000"></div>
           <img 
             ref={polygonRef}
             src={polygonImage} 
             alt="Polygon" 
-            className="relative w-96 h-96 md:w-[500px] md:h-[500px] object-contain z-10 transition-all duration-1000 ease-in-out"
+            className="relative w-[500px] h-[500px] md:w-[650px] md:h-[650px] lg:w-[800px] lg:h-[800px] object-contain z-10 transition-all duration-1000 ease-in-out"
           />
         </div>
       </div>

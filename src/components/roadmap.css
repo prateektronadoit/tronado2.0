@@ -1,0 +1,104 @@
+.roadmap-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+  max-width: 100%;
+  margin: 0 auto;
+  position: relative;
+}
+
+@media (max-width: 1200px) {
+  .roadmap-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .roadmap-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.roadmap-column {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.roadmap-card {
+  background: rgba(22, 18, 46, 0.8);
+  border: 1px solid #372d5a;
+  border-radius: 12px;
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.roadmap-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(139, 92, 246, 0.5);
+  box-shadow: 0 10px 30px -10px rgba(124, 58, 237, 0.3);
+}
+
+.quarter-badge {
+  display: inline-block;
+  background: linear-gradient(135deg, #6E41FF, #A855F7);
+  padding: 0.25rem 0.75rem;
+  border-radius: 16px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 0.5rem;
+}
+
+.roadmap-title {
+  color: #d1caff;
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 0.5rem 0 0;
+}
+
+.roadmap-status {
+  display: inline-block;
+  font-size: 0.7rem;
+  padding: 0.15rem 0.5rem;
+  border-radius: 12px;
+  margin-top: 0.5rem;
+}
+
+.roadmap-status.completed {
+  background: rgba(46, 213, 115, 0.2);
+  border: 1px solid rgba(46, 213, 115, 0.4);
+  color: #2ed573;
+}
+
+.roadmap-status.pending {
+  background: rgba(255, 177, 66, 0.2);
+  border: 1px solid rgba(255, 177, 66, 0.4);
+  color: #ffb142;
+}
+
+.roadmap-status.upcoming {
+  background: rgba(116, 185, 255, 0.2);
+  border: 1px solid rgba(116, 185, 255, 0.4);
+  color: #74b9ff;
+}
+
+.download-report-btn {
+  background: linear-gradient(135deg, #6E41FF, #A855F7);
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin: 2rem auto 0;
+  box-shadow: 0 10px 20px -5px rgba(139, 92, 246, 0.3);
+}

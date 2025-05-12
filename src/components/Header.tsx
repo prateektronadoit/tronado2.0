@@ -23,7 +23,7 @@ export const Header: React.FC<HeaderProps> = ({ className }) => {
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex space-x-8">
-          {['Home', 'About', 'Use', 'Whitepaper'].map((item) => (
+          {['Home', 'About', 'Features', 'Roadmap'].map((item) => (
             <a 
               key={item}
               href={`#${item.toLowerCase()}`}
@@ -34,10 +34,14 @@ export const Header: React.FC<HeaderProps> = ({ className }) => {
           ))}
         </nav>
 
-        {/* Connect Button */}
-        <button className="hidden md:block bg-gradient-to-r from-purple-500 to-blue-500 hover:from-purple-600 hover:to-blue-600 text-white font-medium py-2 px-6 rounded-full transition-all duration-300 transform hover:scale-105">
-          Connect
-        </button>
+        {/* Whitepaper Button */}
+        <a 
+          href="/assets/pdf/Tronado White Paper.pdf" 
+          download
+          className="hidden md:block bg-gradient-to-r from-purple-500 to-blue-500 hover:from-purple-600 hover:to-blue-600 text-white font-medium py-2 px-6 rounded-full transition-all duration-300 transform hover:scale-105 text-center"
+        >
+          Whitepaper
+        </a>
 
         {/* Mobile Menu Button */}
         <button 
@@ -64,7 +68,7 @@ export const Header: React.FC<HeaderProps> = ({ className }) => {
       {isMobileMenuOpen && (
         <div className="md:hidden absolute top-full left-0 w-full bg-black/80 backdrop-blur-md">
           <div className="flex flex-col space-y-4 p-4">
-            {['Home', 'About', 'Use', 'Whitepaper'].map((item) => (
+            {['Home', 'About', 'Features', 'Roadmap'].map((item) => (
               <a 
                 key={item}
                 href={`#${item.toLowerCase()}`}
@@ -74,9 +78,14 @@ export const Header: React.FC<HeaderProps> = ({ className }) => {
                 {item}
               </a>
             ))}
-            <button className="bg-gradient-to-r from-purple-500 to-blue-500 hover:from-purple-600 hover:to-blue-600 text-white font-medium py-2 px-6 rounded-full transition-all duration-300">
-              Connect
-            </button>
+            <a 
+              href="/assets/pdf/Tronado White Paper.pdf" 
+              download
+              className="bg-gradient-to-r from-purple-500 to-blue-500 hover:from-purple-600 hover:to-blue-600 text-white font-medium py-2 px-6 rounded-full transition-all duration-300 text-center block"
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              Whitepaper
+            </a>
           </div>
         </div>
       )}

@@ -5,6 +5,12 @@ import { ShootingStars } from './components/ui/shooting-stars'
 import { StarsBackground } from './components/ui/stars-background'
 import { Header } from './components/Header'
 import HeroSection from './components/HeroSection'
+import AboutTronado from './components/AboutTronado'
+import TronadoHowItWorks from './components/TronadoHowItWorks'
+import IcoAboutSection from './components/IcoAboutSection'
+import WhyChooseTronado from './components/WhyChooseTronado'
+import WhitepaperSection from './components/WhitepaperSection'
+import Roadmap from './components/Roadmap'
 import { RocketLaunchAnimation } from './components/RocketLaunchAnimation'
 import { motion, AnimatePresence } from 'framer-motion'
 
@@ -60,6 +66,12 @@ function App() {
           >
             <Header />
             <HeroSection />
+            <AboutTronado />
+            <TronadoHowItWorks />
+            <IcoAboutSection />
+            <WhyChooseTronado />
+            <WhitepaperSection />
+            <Roadmap />
           </motion.div>
         )}
       </AnimatePresence>
