@@ -5,7 +5,7 @@ import { BsLightningCharge, BsStars } from "react-icons/bs";
 import { motion, useInView, useAnimation } from "framer-motion";
 import { cn } from "../lib/utils";
 import spaceshipImage from "../assets/spaceships.png";
-import FloatingIcons from "./FloatingIcons";
+
 
 interface TronadoHowItWorksProps {
   className?: string;
@@ -80,8 +80,7 @@ const TronadoHowItWorks: React.FC<TronadoHowItWorksProps> = ({ className }) => {
         position: 'relative'
       }}
     >
-      {/* Floating crypto icons in background */}
-      <FloatingIcons />
+      {/* Background without floating crypto icons */}
       
       {/* Stars background (matching app bg) */}
       <div className="absolute inset-0 z-0">

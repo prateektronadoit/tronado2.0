@@ -1,8 +1,6 @@
 // App Component
 import { useState, useEffect } from 'react'
 import './App.css'
-import { ShootingStars } from './components/ui/shooting-stars'
-import { StarsBackground } from './components/ui/stars-background'
 import { Header } from './components/Header'
 import HeroSection from './components/HeroSection'
 import AboutTronado from './components/AboutTronado'
@@ -44,16 +42,7 @@ function App() {
         )}
       </AnimatePresence>
       
-      {/* Animated Background */}
-      <div className="fixed inset-0 z-0">
-        <StarsBackground />
-        <ShootingStars 
-          starColor="#9D4EDD" 
-          trailColor="#6A0DAD" 
-          minDelay={800} 
-          maxDelay={3000}
-        />
-      </div>
+
       
       {/* Main Content */}
       <AnimatePresence>

@@ -19,7 +19,7 @@ export const RocketLaunchAnimation = ({ onAnimationComplete }: { onAnimationComp
       const crackTimer = setTimeout(() => {
         setShowCrack(true);
         
-        // After crack appears, show text
+        // After crack appears, show text faster
         const textTimer = setTimeout(() => {
           setShowText(true);
           
@@ -30,13 +30,13 @@ export const RocketLaunchAnimation = ({ onAnimationComplete }: { onAnimationComp
             // Animation complete callback
             const completeTimer = setTimeout(() => {
               onAnimationComplete();
-            }, 1200);
+            }, 800); // Faster completion time
             
             return () => clearTimeout(completeTimer);
-          }, 1500);
+          }, 800); // Reduced time between text and content
           
           return () => clearTimeout(contentTimer);
-        }, 1200);
+        }, 500); // Much faster text appearance
         
         return () => clearTimeout(textTimer);
       }, 500); // Shorter time after rocket is hidden
