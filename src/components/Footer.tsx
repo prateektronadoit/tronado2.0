@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { FaInstagram, FaTelegramPlane, FaLinkedinIn, FaTwitter } from "react-icons/fa";
+import React, { useState, useEffect } from "react";
+import { FaInstagram, FaTelegramPlane, FaLinkedinIn, FaTwitter, FaArrowUp } from "react-icons/fa";
 import { motion, AnimatePresence } from 'framer-motion';
 import { FiChevronDown } from 'react-icons/fi';
 import radioImage from "../assets/radio.jpg";
@@ -47,6 +47,41 @@ const FaqItem: React.FC<FaqItemProps> = ({ question, answer }) => {
 };
 
 const Footer: React.FC = () => {
+  const [showScrollButton, setShowScrollButton] = useState(false);
+  
+  useEffect(() => {
+    const handleScroll = () => {
+      // Get the hero section element
+      const heroSection = document.getElementById('hero');
+      
+      if (heroSection) {
+        // Get the bottom position of the hero section
+        const heroBottom = heroSection.getBoundingClientRect().bottom;
+        
+        // Show the button if we've scrolled past the hero section
+        setShowScrollButton(heroBottom < 0);
+      }
+    };
+    
+    // Add scroll event listener
+    window.addEventListener('scroll', handleScroll);
+    
+    // Initial check
+    handleScroll();
+    
+    // Cleanup
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+  
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  };
+  
   const faqItems = [
     {
       question: "What is Tronado contract address?",
@@ -148,6 +183,23 @@ const Footer: React.FC = () => {
           Copyright 2025 <span className="text-gray-300">Coinpay</span>. All rights reserved.
         </p>
       </div>
+      
+      {/* Scroll to top button */}
+      <AnimatePresence>
+        {showScrollButton && (
+          <motion.button
+            className="fixed bottom-8 right-8 z-50 p-3 rounded-full bg-gradient-to-r from-purple-600 to-blue-600 text-white shadow-lg cursor-pointer"
+            onClick={scrollToTop}
+            initial={{ opacity: 0, scale: 0.5 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.5 }}
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+          >
+            <FaArrowUp size={20} />
+          </motion.button>
+        )}
+      </AnimatePresence>
     </footer>
   );
 };

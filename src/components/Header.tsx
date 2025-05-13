@@ -11,7 +11,7 @@ export const Header: React.FC<HeaderProps> = ({ className }) => {
 
   return (
     <header className={cn(
-      "relative z-10 w-full py-4 px-6 backdrop-blur-sm bg-black/20", 
+      "fixed top-0 z-50 w-full py-4 px-6 backdrop-blur-md bg-black/40 shadow-md", 
       className
     )}>
       <div className="max-w-7xl mx-auto flex items-center justify-between">
@@ -24,15 +24,10 @@ export const Header: React.FC<HeaderProps> = ({ className }) => {
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex space-x-8">
-          {['Home', 'About', 'Features', 'Roadmap'].map((item) => (
-            <a 
-              key={item}
-              href={`#${item.toLowerCase()}`}
-              className="text-white hover:text-blue-400 transition-colors duration-300 font-medium"
-            >
-              {item}
-            </a>
-          ))}
+          <a href="#hero" className="text-white hover:text-blue-400 transition-colors duration-300 font-medium">Home</a>
+          <a href="#about" className="text-white hover:text-blue-400 transition-colors duration-300 font-medium">About</a>
+          <a href="#features" className="text-white hover:text-blue-400 transition-colors duration-300 font-medium">Features</a>
+          <a href="#roadmap" className="text-white hover:text-blue-400 transition-colors duration-300 font-medium">Roadmap</a>
         </nav>
 
         {/* Whitepaper Button */}
@@ -69,16 +64,10 @@ export const Header: React.FC<HeaderProps> = ({ className }) => {
       {isMobileMenuOpen && (
         <div className="md:hidden absolute top-full left-0 w-full bg-black/80 backdrop-blur-md">
           <div className="flex flex-col space-y-4 p-4">
-            {['Home', 'About', 'Features', 'Roadmap'].map((item) => (
-              <a 
-                key={item}
-                href={`#${item.toLowerCase()}`}
-                className="text-white hover:text-blue-400 transition-colors duration-300 font-medium py-2"
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                {item}
-              </a>
-            ))}
+            <a href="#hero" className="text-white hover:text-blue-400 transition-colors duration-300 font-medium py-2" onClick={() => setIsMobileMenuOpen(false)}>Home</a>
+            <a href="#about" className="text-white hover:text-blue-400 transition-colors duration-300 font-medium py-2" onClick={() => setIsMobileMenuOpen(false)}>About</a>
+            <a href="#features" className="text-white hover:text-blue-400 transition-colors duration-300 font-medium py-2" onClick={() => setIsMobileMenuOpen(false)}>Features</a>
+            <a href="#roadmap" className="text-white hover:text-blue-400 transition-colors duration-300 font-medium py-2" onClick={() => setIsMobileMenuOpen(false)}>Roadmap</a>
             <a 
               href={whitepaperPdf} 
               download="Tronado White Paper.pdf"

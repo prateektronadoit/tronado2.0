@@ -60,7 +60,7 @@ const WhyChooseTronado: React.FC = () => {
 
   return (
     <section 
-      id="why-choose-tronado" 
+      id="features" 
       className="text-white py-20 px-6 md:px-20 overflow-hidden relative"
       style={{
         background: 'linear-gradient(135deg, #0f172a 0%, #1e1230 50%, #170a23 100%)',
