@@ -1,23 +1,110 @@
-import React from "react";
+import React, { useState } from "react";
 import { FaInstagram, FaTelegramPlane, FaLinkedinIn, FaTwitter } from "react-icons/fa";
+import { motion, AnimatePresence } from 'framer-motion';
+import { FiChevronDown } from 'react-icons/fi';
+import radioImage from "../assets/radio.jpg";
+
+interface FaqItemProps {
+  question: string;
+  answer: string;
+}
+
+const FaqItem: React.FC<FaqItemProps> = ({ question, answer }) => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  return (
+    <div className="mb-4 border border-gray-800/50 rounded-lg overflow-hidden bg-black/50 backdrop-blur-sm shadow-lg">
+      <button
+        className="w-full px-6 py-4 text-left flex justify-between items-center focus:outline-none"
+        onClick={() => setIsOpen(!isOpen)}
+      >
+        <h3 className="font-semibold text-white">{question}</h3>
+        <motion.div
+          animate={{ rotate: isOpen ? 180 : 0 }}
+          transition={{ duration: 0.3 }}
+          className="text-white"
+        >
+          <FiChevronDown size={20} />
+        </motion.div>
+      </button>
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div 
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: 'auto', opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            className="px-6 pb-4"
+          >
+            <div className="border-t border-gray-800/50 pt-4 text-gray-300">
+              {answer}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+};
 
 const Footer: React.FC = () => {
-  return (
-    <footer className="relative text-center text-white pt-8 sm:pt-10 md:pt-12 pb-6 sm:pb-8 overflow-hidden px-4" style={{ background: 'linear-gradient(135deg, #261437 0%, #1e1230 50%, #190f28 100%)' }}>
-      {/* Gradient glow connector from above */}
-      <div className="absolute top-0 left-0 w-full h-8 sm:h-10 md:h-12 bg-gradient-to-t from-[#261437] to-transparent z-0" />
-      
-      {/* Radial gradient overlay */}
-      <div 
-        className="absolute inset-0 z-0 opacity-20"
-        style={{
-          background: 'radial-gradient(circle at center, rgba(150, 100, 255, 0.2) 0%, rgba(90, 50, 150, 0.1) 50%, transparent 70%)',
-        }}
-      ></div>
+  const faqItems = [
+    {
+      question: "What is Tronado contract address?",
+      answer: "0xC396b3198b5Bd6OCF2cDaB9b34F646A58C029998"
+    }
+  ];
 
-      {/* Footer Content */}
-      <div className="relative z-10">
-        <h2 className="text-xs sm:text-sm text-gray-300 font-semibold tracking-wider mb-4 sm:mb-6">
+  return (
+    <footer 
+      id="faq" 
+      className="relative py-20 px-6 md:px-20 text-center text-white overflow-hidden"
+      style={{ 
+        background: "#100a20"
+      }}
+    >
+      {/* Radio background image */}
+      <div 
+        className="absolute inset-0 z-0 pointer-events-none"
+        style={{
+          backgroundImage: `url(${radioImage})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center center',
+          filter: 'brightness(0.7)'
+        }}
+      />
+      
+      {/* Dark overlay - similar to roadmap style */}
+      <div 
+        className="absolute inset-0 z-0 pointer-events-none"
+        style={{
+          background: 'linear-gradient(180deg, rgba(16, 10, 32, 0.8) 0%, rgba(16, 10, 32, 0.9) 100%)'
+        }}
+      />
+      
+      {/* FAQ Section */}
+      <div className="relative z-10 max-w-4xl mx-auto">
+        <div className="flex items-center justify-center gap-2 mb-4">
+          <div className="w-1.5 h-1.5 rounded-full bg-white"></div>
+          <h3 className="uppercase text-xs tracking-[0.3em] text-white font-medium">
+            FREQUENTLY ASKED
+          </h3>
+          <div className="w-1.5 h-1.5 rounded-full bg-white"></div>
+        </div>
+
+        <h2 className="text-4xl font-bold text-center mb-12 text-white">
+          FAQ
+        </h2>
+
+        <div className="space-y-4 mb-20">
+          {faqItems.map((item, index) => (
+            <FaqItem key={index} question={item.question} answer={item.answer} />
+          ))}
+        </div>
+      </div>
+      
+      {/* Footer content */}
+      <div className="relative z-10 border-t border-gray-800/30 pt-12">
+        <h2 className="text-xs sm:text-sm text-white font-semibold tracking-wider mb-4 sm:mb-6 text-center">
           JOIN OUR SOCIAL GROUP
         </h2>
 
@@ -56,8 +143,8 @@ const Footer: React.FC = () => {
           </a>
         </div>
 
-        <p className="text-xs sm:text-sm text-gray-500">
-          Copyright 2025 <span className="text-purple-400">Coinpay</span>. All rights reserved.
+        <p className="text-xs sm:text-sm text-gray-500 text-center">
+          Copyright 2025 <span className="text-gray-300">Coinpay</span>. All rights reserved.
         </p>
       </div>
     </footer>
