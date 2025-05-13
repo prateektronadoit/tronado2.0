@@ -9,6 +9,8 @@ import IcoAboutSection from './components/IcoAboutSection'
 import WhyChooseTronado from './components/WhyChooseTronado'
 import WhitepaperSection from './components/WhitepaperSection'
 import Roadmap from './components/Roadmap'
+import FaqSection from './components/FaqSection'
+import Footer from './components/Footer'
 import { RocketLaunchAnimation } from './components/RocketLaunchAnimation'
 import { motion, AnimatePresence } from 'framer-motion'
 
@@ -61,6 +63,8 @@ function App() {
             <WhyChooseTronado />
             <WhitepaperSection />
             <Roadmap />
+            <FaqSection />
+            <Footer />
           </motion.div>
         )}
       </AnimatePresence>

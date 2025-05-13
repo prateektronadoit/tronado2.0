@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { cn } from '../lib/utils';
+import whitepaperPdf from '../assets/pdf/Tronado White Paper.pdf';
 
 interface HeaderProps {
   className?: string;
@@ -36,8 +37,8 @@ export const Header: React.FC<HeaderProps> = ({ className }) => {
 
         {/* Whitepaper Button */}
         <a 
-          href="/assets/pdf/Tronado White Paper.pdf" 
-          download
+          href={whitepaperPdf} 
+          download="Tronado White Paper.pdf"
           className="hidden md:block bg-gradient-to-r from-purple-500 to-blue-500 hover:from-purple-600 hover:to-blue-600 text-white font-medium py-2 px-6 rounded-full transition-all duration-300 transform hover:scale-105 text-center"
         >
           Whitepaper
@@ -79,8 +80,8 @@ export const Header: React.FC<HeaderProps> = ({ className }) => {
               </a>
             ))}
             <a 
-              href="/assets/pdf/Tronado White Paper.pdf" 
-              download
+              href={whitepaperPdf} 
+              download="Tronado White Paper.pdf"
               className="bg-gradient-to-r from-purple-500 to-blue-500 hover:from-purple-600 hover:to-blue-600 text-white font-medium py-2 px-6 rounded-full transition-all duration-300 text-center block"
               onClick={() => setIsMobileMenuOpen(false)}
             >

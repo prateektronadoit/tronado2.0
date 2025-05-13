@@ -1,6 +1,8 @@
 import React from "react";
 import { motion } from "framer-motion";
 import astroImage from "../assets/astro.png"; // ✅ Correct image import
+import auditReportPdf from "../assets/pdf/Security Assessment Report -Tronado (Final).pdf";
+import whitepaperPdf from "../assets/pdf/Tronado White Paper.pdf";
 
 const WhitepaperSection: React.FC = () => {
   return (
@@ -57,8 +59,8 @@ const WhitepaperSection: React.FC = () => {
               building a safe and robust solution for all users.
             </p>
             <motion.a
-              href="/assets/pdf/Security Assessment Report - Tronado (Final).pdf"
-              download
+              href={auditReportPdf}
+              download="Security Assessment Report - Tronado.pdf"
               className="relative inline-flex items-center justify-center px-8 py-3 rounded-lg bg-gradient-to-r from-purple-600/10 to-purple-900/10 border border-purple-500/30 text-[#d1caff] shadow-md hover:shadow-purple-500/20 group overflow-hidden"
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.98 }}
@@ -83,8 +85,8 @@ const WhitepaperSection: React.FC = () => {
               about us and our operation.
             </p>
             <motion.a
-              href="/assets/pdf/Tronado White Paper.pdf"
-              download
+              href={whitepaperPdf}
+              download="Tronado White Paper.pdf"
               className="relative inline-flex items-center justify-center px-8 py-3 rounded-lg bg-gradient-to-r from-purple-600/10 to-purple-900/10 border border-purple-500/30 text-[#d1caff] shadow-md hover:shadow-purple-500/20 group overflow-hidden"
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.98 }}
