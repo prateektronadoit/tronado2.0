@@ -27,19 +27,21 @@
 }
 
 .roadmap-card {
-  background: rgba(22, 18, 46, 0.8);
-  border: 1px solid #372d5a;
+  background: rgba(15, 10, 30, 0.6);
+  border: 1px solid rgba(55, 45, 90, 0.4);
   border-radius: 12px;
   backdrop-filter: blur(10px);
   transition: all 0.3s ease;
   position: relative;
   overflow: hidden;
+  box-shadow: 0 4px 15px -5px rgba(0, 0, 0, 0.5);
 }
 
 .roadmap-card:hover {
   transform: translateY(-4px);
   border-color: rgba(139, 92, 246, 0.5);
-  box-shadow: 0 10px 30px -10px rgba(124, 58, 237, 0.3);
+  box-shadow: 0 10px 30px -10px rgba(124, 58, 237, 0.4);
+  background: rgba(20, 12, 35, 0.7);
 }
 
 .quarter-badge {
@@ -49,6 +51,7 @@
   border-radius: 16px;
   font-size: 0.75rem;
   font-weight: 700;
+  box-shadow: 0 2px 8px rgba(110, 65, 255, 0.3);
   color: #ffffff;
   margin-bottom: 0.5rem;
 }

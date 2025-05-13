@@ -13,7 +13,7 @@ const FaqItem: React.FC<FaqItemProps> = ({ question, answer }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className="mb-4 border border-gray-800/50 rounded-lg overflow-hidden bg-black/50 backdrop-blur-sm shadow-lg">
+    <div className="mb-4 border border-gray-800/50 rounded-lg overflow-hidden bg-black/30 backdrop-blur-sm shadow-lg">
       <button
         className="w-full px-6 py-4 text-left flex justify-between items-center focus:outline-none"
         onClick={() => setIsOpen(!isOpen)}
@@ -59,7 +59,7 @@ const Footer: React.FC = () => {
       id="faq" 
       className="relative py-20 px-6 md:px-20 text-center text-white overflow-hidden"
       style={{ 
-        background: "#100a20"
+        background: "#08050f"
       }}
     >
       {/* Radio background image */}
@@ -69,15 +69,16 @@ const Footer: React.FC = () => {
           backgroundImage: `url(${radioImage})`,
           backgroundSize: 'cover',
           backgroundPosition: 'center center',
-          filter: 'brightness(0.7)'
+          filter: 'brightness(0.85)',
+          opacity: 0.9
         }}
       />
       
-      {/* Dark overlay - similar to roadmap style */}
+      {/* Very light dark overlay - similar to roadmap style but more transparent */}
       <div 
         className="absolute inset-0 z-0 pointer-events-none"
         style={{
-          background: 'linear-gradient(180deg, rgba(16, 10, 32, 0.8) 0%, rgba(16, 10, 32, 0.9) 100%)'
+          background: 'linear-gradient(180deg, rgba(10, 5, 20, 0.6) 0%, rgba(5, 2, 10, 0.7) 100%)'
         }}
       />
       

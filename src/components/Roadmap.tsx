@@ -114,7 +114,7 @@ const Roadmap: React.FC = () => {
       id="roadmap" 
       className="text-white py-20 px-6 md:px-20 overflow-hidden relative"
       style={{
-        background: 'linear-gradient(135deg, #0f172a 0%, #1e1230 50%, #170a23 100%)',
+        background: '#08050f',
         position: 'relative'
       }}
       ref={ref}
@@ -145,17 +145,17 @@ const Roadmap: React.FC = () => {
       ))}
 
       {/* Astro background */}
-      <div className="absolute inset-0 z-0 overflow-hidden opacity-10">
+      <div className="absolute inset-0 z-0 overflow-hidden opacity-20">
         <motion.div 
           className="absolute right-0 bottom-0 w-full h-full"
-          initial={{ opacity: 0.6 }}
+          initial={{ opacity: 0.8 }}
           animate={floatingAnimation}
         >
           <img 
             src={astroImg} 
             alt="Astronaut" 
-            className="absolute right-[-10%] bottom-[-10%] w-[60%] opacity-30"
-            style={{ filter: "blur(2px)" }}
+            className="absolute right-[-10%] bottom-[-10%] w-[60%] opacity-40"
+            style={{ filter: "blur(1px)" }}
           />
         </motion.div>
       </div>
@@ -190,11 +190,20 @@ const Roadmap: React.FC = () => {
         />
       ))}
 
-      {/* Radial gradient overlay */}
+      {/* Deep space background effect */}
       <div 
-        className="absolute inset-0 opacity-30 z-0"
+        className="absolute inset-0 opacity-40 z-0"
         style={{
-          background: 'radial-gradient(circle at 70% 30%, rgba(150, 120, 255, 0.15) 0%, rgba(90, 50, 150, 0.05) 50%, transparent 70%)',
+          background: 'radial-gradient(circle at 70% 30%, rgba(30, 20, 100, 0.2) 0%, rgba(20, 10, 50, 0.1) 50%, transparent 70%)',
+        }}
+      ></div>
+      
+      {/* Galaxy-like overlay */}
+      <div 
+        className="absolute inset-0 z-0 pointer-events-none"
+        style={{
+          background: 'linear-gradient(45deg, rgba(5, 2, 15, 0.7) 0%, rgba(10, 5, 30, 0.4) 100%)',
+          mixBlendMode: 'multiply'
         }}
       ></div>
 
