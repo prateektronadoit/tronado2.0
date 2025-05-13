@@ -1,5 +1,5 @@
 import { cn } from '../lib/utils';
-import astroGif from '../assets/astrobg.gif';
+import astroGif from '../assets/astronaut.png';
 import onlyBgGif from '../assets/onlybg.gif';
 
 interface HeroSectionProps {
