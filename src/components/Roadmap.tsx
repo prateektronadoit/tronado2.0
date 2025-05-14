@@ -3,7 +3,7 @@ import { motion, useAnimation } from "framer-motion";
 import { useInView } from "framer-motion";
 import "./roadmap.css";
 import astroImg from "../assets/astro.png";
-import { MdDownload } from "react-icons/md";
+// import { MdDownload } from "react-icons/md";
 
 // Roadmap data organized as in the image
 type RoadmapItem = {
@@ -98,16 +98,16 @@ const Roadmap: React.FC = () => {
   };
 
   // Handle PDF download
-  const handleDownload = () => {
-    // Create an anchor element and set properties
-    const link = document.createElement('a');
-    link.href = '/assets/pdf/Security Assessment Report - Tronado (Final).pdf';
-    link.download = 'Tronado_Security_Assessment_Report.pdf';
-    // Append to the document body, click and remove
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-  };
+  // const handleDownload = () => {
+  //   // Create an anchor element and set properties
+  //   const link = document.createElement('a');
+  //   link.href = '/assets/pdf/Security Assessment Report - Tronado (Final).pdf';
+  //   link.download = 'Tronado_Security_Assessment_Report.pdf';
+  //   // Append to the document body, click and remove
+  //   document.body.appendChild(link);
+  //   link.click();
+  //   document.body.removeChild(link);
+  // };
 
   return (
     <section 
