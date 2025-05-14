@@ -6,6 +6,7 @@ import HeroSection from './components/HeroSection'
 import AboutTronado from './components/AboutTronado'
 import TronadoHowItWorks from './components/TronadoHowItWorks'
 import IcoAboutSection from './components/IcoAboutSection'
+import TronadoTokenomics from './components/TronadoTokenomics'
 import WhyChooseTronado from './components/WhyChooseTronado'
 import WhitepaperSection from './components/WhitepaperSection'
 import Roadmap from './components/Roadmap'
@@ -59,6 +60,7 @@ function App() {
             <AboutTronado />
             <TronadoHowItWorks />
             <IcoAboutSection />
+            <TronadoTokenomics />
             <WhyChooseTronado />
             <WhitepaperSection />
             <Roadmap />

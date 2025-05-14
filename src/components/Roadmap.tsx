@@ -1,7 +1,8 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { motion, useAnimation } from "framer-motion";
 import { useInView } from "framer-motion";
 import "./roadmap.css";
+import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import astroImg from "../assets/astro.png";
 // import { MdDownload } from "react-icons/md";
 
@@ -52,6 +53,50 @@ const Roadmap: React.FC = () => {
   const controls = useAnimation();
   const ref = React.useRef(null);
   const isInView = useInView(ref, { once: false, amount: 0.3 });
+  
+  // Mobile carousel state
+  const [isMobile, setIsMobile] = useState(false);
+  const [activeIndex, setActiveIndex] = useState(0);
+  const autoplayRef = useRef<number | null>(null);
+  
+  // Check if device is mobile
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    
+    checkMobile(); // Initial check
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+  
+  // Autoplay for mobile carousel
+  useEffect(() => {
+    if (isMobile && isInView) {
+      autoplayRef.current = window.setInterval(() => {
+        setActiveIndex(prev => (prev + 1) % roadmapItems.length);
+      }, 5000);
+    }
+    
+    return () => {
+      if (autoplayRef.current) {
+        window.clearInterval(autoplayRef.current);
+      }
+    };
+  }, [isMobile, isInView, activeIndex]);
+  
+  // Navigation functions for mobile carousel
+  const goToPrev = () => {
+    setActiveIndex((prev) => 
+      prev === 0 ? roadmapItems.length - 1 : prev - 1
+    );
+  };
+  
+  const goToNext = () => {
+    setActiveIndex((prev) => 
+      (prev + 1) % roadmapItems.length
+    );
+  };
 
   useEffect(() => {
     if (isInView) {
@@ -240,14 +285,15 @@ const Roadmap: React.FC = () => {
           </h3>
         </motion.div>
         
-        {/* Roadmap Grid */}
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          animate={controls}
-          className="roadmap-grid"
-          style={{ minHeight: "600px", position: "relative" }}
-        >
+        {/* Desktop Roadmap Grid - Only shown on larger screens */}
+        {!isMobile && (
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            animate={controls}
+            className="roadmap-grid"
+            style={{ minHeight: "600px", position: "relative" }}
+          >
           {/* Column 1 */}
           <div className="roadmap-column">
             {columns.column1.map((item, index) => (
@@ -340,6 +386,61 @@ const Roadmap: React.FC = () => {
             ))}
           </div>
         </motion.div>
+        )}
+        
+        {/* Mobile Carousel - Only shown on mobile */}
+        {isMobile && (
+          <div className="roadmap-mobile-carousel">
+            {/* Navigation Arrows */}
+            <button 
+              onClick={goToPrev}
+              className="roadmap-nav-button left-1"
+              aria-label="Previous item"
+            >
+              <FaChevronLeft />
+            </button>
+            
+            <button 
+              onClick={goToNext}
+              className="roadmap-nav-button right-1"
+              aria-label="Next item"
+            >
+              <FaChevronRight />
+            </button>
+            
+            {/* Carousel Display */}
+            <motion.div 
+              className="roadmap-mobile-item"
+              variants={itemVariants}
+              initial="hidden"
+              animate={controls}
+              custom={{ colIndex: Math.floor(activeIndex / 4), itemIndex: activeIndex % 4 }}
+            >
+              <div className="quarter-badge">
+                {roadmapItems[activeIndex].quarter} - {roadmapItems[activeIndex].year}
+              </div>
+              <h3 className="roadmap-title">{roadmapItems[activeIndex].title}</h3>
+              {roadmapItems[activeIndex].status && (
+                <span className={`roadmap-status ${roadmapItems[activeIndex].status}`}>
+                  {roadmapItems[activeIndex].status === 'completed' ? 'Completed' : 
+                   roadmapItems[activeIndex].status === 'pending' ? 'In Progress' : 'Upcoming'}
+                </span>
+              )}
+            </motion.div>
+            
+            {/* Dots Indicator */}
+            <div className="flex justify-center mt-4 gap-1.5">
+              {roadmapItems.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => setActiveIndex(index)}
+                  className={`w-2 h-2 rounded-full transition-all ${activeIndex === index ? 'bg-purple-500 w-4' : 'bg-gray-400/50'}`}
+                  aria-label={`Go to item ${index + 1}`}
+                />
+              ))}
+            </div>
+          </div>
+        )}
 
         {/* Audit Report Download Button
         <motion.div 
