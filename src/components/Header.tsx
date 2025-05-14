@@ -17,9 +17,11 @@ export const Header: React.FC<HeaderProps> = ({ className }) => {
       <div className="max-w-7xl mx-auto flex items-center justify-between">
         {/* Logo */}
         <div className="flex items-center">
-          <div className="text-2xl font-bold bg-gradient-to-r from-purple-400 to-blue-500 bg-clip-text text-transparent">
-            2.0 Flash
-          </div>
+          <img 
+            src="/logo.png" 
+            alt="Tronado Logo" 
+            className="h-12 w-auto"
+          />
         </div>
 
         {/* Desktop Navigation */}

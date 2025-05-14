@@ -59,29 +59,39 @@ const Roadmap: React.FC = () => {
     }
   }, [controls, isInView]);
 
-  // Animation variants
+  // Animation variants for center bundle effect
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.1,
-        delayChildren: 0.3,
+        staggerChildren: 0.08,
+        delayChildren: 0.5,
       },
     },
   };
 
+  // Card animation - starts from center and animates to position
   const itemVariants = {
-    hidden: { y: 20, opacity: 0 },
-    visible: {
-      y: 0,
+    hidden: { 
+      scale: 0.5, 
+      opacity: 0,
+      x: "calc(50vw - 50%)", // Move to horizontal center of viewport
+      y: "calc(50vh - 50%)", // Move to vertical center of viewport
+    },
+    visible: (custom: { colIndex: number, itemIndex: number }) => ({
+      scale: 1,
       opacity: 1,
+      x: 0,
+      y: 0,
       transition: {
         type: "spring",
-        stiffness: 100,
+        stiffness: 70,
         damping: 15,
+        mass: 1,
+        delay: 0.3 + (custom.colIndex * 0.1) + (custom.itemIndex * 0.05),
       },
-    },
+    }),
   };
 
   // Floating animation for astro
@@ -236,6 +246,7 @@ const Roadmap: React.FC = () => {
           initial="hidden"
           animate={controls}
           className="roadmap-grid"
+          style={{ minHeight: "600px", position: "relative" }}
         >
           {/* Column 1 */}
           <div className="roadmap-column">
@@ -244,6 +255,7 @@ const Roadmap: React.FC = () => {
                 key={`col1-${index}`}
                 className="roadmap-card p-5"
                 variants={itemVariants}
+                custom={{ colIndex: 0, itemIndex: index }}
               >
                 <div className="quarter-badge">
                   {item.quarter} - {item.year}
@@ -266,6 +278,7 @@ const Roadmap: React.FC = () => {
                 key={`col2-${index}`}
                 className="roadmap-card p-5"
                 variants={itemVariants}
+                custom={{ colIndex: 1, itemIndex: index }}
               >
                 <div className="quarter-badge">
                   {item.quarter} - {item.year}
@@ -288,6 +301,7 @@ const Roadmap: React.FC = () => {
                 key={`col3-${index}`}
                 className="roadmap-card p-5"
                 variants={itemVariants}
+                custom={{ colIndex: 2, itemIndex: index }}
               >
                 <div className="quarter-badge">
                   {item.quarter} - {item.year}
@@ -310,6 +324,7 @@ const Roadmap: React.FC = () => {
                 key={`col4-${index}`}
                 className="roadmap-card p-5"
                 variants={itemVariants}
+                custom={{ colIndex: 3, itemIndex: index }}
               >
                 <div className="quarter-badge">
                   {item.quarter} - {item.year}
