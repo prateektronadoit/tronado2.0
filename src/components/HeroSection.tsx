@@ -1,15 +1,38 @@
 import { cn } from '../lib/utils';
 import monlyBgVideo from '../assets/monlybg.mp4';
+import { useEffect, useState } from 'react';
 
 interface HeroSectionProps {
   className?: string;
 }
 
 const HeroSection = ({ className }: HeroSectionProps = {}) => {
+  const [isVisible, setIsVisible] = useState(true);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      // Check if user has scrolled down more than a threshold (e.g., 100px)
+      const scrollPosition = window.scrollY;
+      if (scrollPosition > 100) {
+        setIsVisible(false);
+      } else {
+        setIsVisible(true);
+      }
+    };
+
+    // Add scroll event listener
+    window.addEventListener('scroll', handleScroll);
+
+    // Clean up event listener on component unmount
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
 
   return (
     <section id="hero" className={cn(
-      "relative flex flex-col items-center justify-center min-h-[100vh] overflow-hidden bg-black",
+      "relative flex flex-col items-center justify-center min-h-[100vh] overflow-hidden bg-black transition-all duration-500",
+      isVisible ? 'opacity-100' : 'opacity-0 pointer-events-none transform -translate-y-20',
       className
     )}>
       {/* Main background Video */}
