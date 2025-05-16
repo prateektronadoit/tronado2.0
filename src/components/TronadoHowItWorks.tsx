@@ -222,7 +222,7 @@ const TronadoHowItWorks: React.FC<TronadoHowItWorksProps> = ({ className }) => {
                 <GiRingedPlanet />
               </motion.div>
               <div className="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-blue-400">
-                250M+
+                250M
               </div>
               <div className="text-blue-300 text-sm mt-1">Total Supply</div>
             </motion.div>
@@ -248,7 +248,7 @@ const TronadoHowItWorks: React.FC<TronadoHowItWorksProps> = ({ className }) => {
                 <BsStars />
               </motion.div>
               <div className="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-400">
-                5%
+                Upcoming
               </div>
               <div className="text-blue-300 text-sm mt-1">Staking Rewards</div>
             </motion.div>
@@ -274,9 +274,9 @@ const TronadoHowItWorks: React.FC<TronadoHowItWorksProps> = ({ className }) => {
                 <GiGalaxy />
               </motion.div>
               <div className="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 to-blue-400">
-                2%
+              Buyback
               </div>
-              <div className="text-blue-300 text-sm mt-1">Burn Rate</div>
+              <div className="text-blue-300 text-sm mt-1">Burn Mechanisms</div>
             </motion.div>
 
             {/* Planet 4 */}
@@ -300,7 +300,7 @@ const TronadoHowItWorks: React.FC<TronadoHowItWorksProps> = ({ className }) => {
                 <GiPlanetConquest />
               </motion.div>
               <div className="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-fuchsia-400 to-purple-400">
-                3+
+              Polygon
               </div>
               <div className="text-blue-300 text-sm mt-1">Blockchain Networks</div>
             </motion.div>

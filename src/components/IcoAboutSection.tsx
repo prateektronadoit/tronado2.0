@@ -118,9 +118,9 @@ const PlanetIcons = [
 
 // Custom wave path component
 const WavePath: React.FC<{progress: number}> = ({ progress }) => (
-  <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-4 z-0">
+  <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-4 z-0" style={{ top: '280px' }}>
     <svg 
-      className="absolute h-full w-24 overflow-visible" 
+      className="absolute h-[calc(100%-280px)] w-24 overflow-visible" 
       viewBox="0 0 100 1000" 
       preserveAspectRatio="none"
       style={{ left: '-40px' }}
@@ -133,7 +133,7 @@ const WavePath: React.FC<{progress: number}> = ({ progress }) => (
         </linearGradient>
       </defs>
       <path
-        d="M50,0 Q65,125 35,250 Q5,375 65,500 Q95,625 35,750 Q5,875 50,1000"
+        d="M50,0 L50,1000"
         fill="none"
         stroke="url(#waveGradient)"
         strokeWidth="4"
@@ -149,6 +149,7 @@ const WavePath: React.FC<{progress: number}> = ({ progress }) => (
       className="absolute left-1/2 transform -translate-x-1/2 w-2 rounded-full blur-sm" 
       style={{ 
         height: `${progress * 100}%`,
+        top: '0px',
         background: 'linear-gradient(to bottom, #8b5cf6, #7c3aed, #db2777)',
         opacity: 0.4,
       }}

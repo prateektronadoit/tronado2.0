@@ -121,30 +121,77 @@ const TronadoTokenomics: React.FC = () => {
             ))}
           </div>
           
-          {/* Right side - Chart Image with Animation - Only rotation, no background effects */}
+          {/* Right side - Chart Image with Animation - Circular rotation animation */}
           <div className="lg:w-1/2 flex flex-col justify-center items-center">
             <div className="relative">
+              {/* Circular glow effects */}
+              <div className="absolute inset-0 flex items-center justify-center">
+                {/* Outer glow ring */}
+                <div className="absolute w-[110%] h-[110%] rounded-full bg-gradient-to-r from-purple-600/20 to-pink-500/20 blur-md animate-pulse"></div>
+                {/* Middle glow ring */}
+                <div className="absolute w-[105%] h-[105%] rounded-full bg-gradient-to-br from-blue-500/20 to-purple-700/20 blur-md animate-pulse" 
+                  style={{animationDelay: '0.7s'}}></div>
+                {/* Inner glow ring */}
+                <div className="absolute w-full h-full rounded-full bg-gradient-to-tr from-purple-800/30 to-pink-700/30 blur-sm animate-pulse"
+                  style={{animationDelay: '1.4s'}}></div>
+              </div>
+              
+              {/* Chart container */}
               <motion.div 
-                className="w-80 h-80 md:w-96 md:h-96 lg:w-[400px] lg:h-[400px] relative"
-                animate={{ 
-                  rotate: [0, 360]
-                }}
-                transition={{ 
-                  duration: 180, 
-                  ease: "linear", 
-                  repeat: Infinity, 
-                  repeatType: "loop" 
-                }}
+                className="w-[440px] h-[440px] md:w-[480px] md:h-[480px] lg:w-[500px] lg:h-[500px] relative" /* Increased size */
               >
-                <img 
-                  src={trdoChartImg}
-                  alt="Tokenomics Distribution" 
-                  className="w-full h-full object-contain"
-                />
+                {/* Shadow effect behind the chart */}
+                <div className="absolute inset-0 rounded-full shadow-[0_0_40px_rgba(139,92,246,0.3)] bg-transparent z-0"></div>
+                
+                {/* Rotating chart with outward expansion */}
+                <motion.div 
+                  className="w-full h-full flex items-center justify-center relative z-10"
+                  animate={{ 
+                    rotate: [0, 360],
+                    scale: [0.95, 1]
+                  }}
+                  transition={{ 
+                    rotate: {
+                      duration: 60,
+                      ease: "linear",
+                      repeat: Infinity,
+                      repeatType: "loop"
+                    },
+                    scale: {
+                      duration: 1,
+                      ease: "easeOut"
+                    }
+                  }}
+                >
+                  <div className="relative w-full h-full rounded-full overflow-hidden flex items-center justify-center">
+                    {/* Background for better readability */}
+                    <div className="absolute inset-0 bg-[#0f0f1a]/90 rounded-full"></div>
+                    
+                    {/* Chart image with outward expansion */}
+                    <motion.div
+                      className="w-full h-full relative"
+                      initial={{ scale: 0.9 }}
+                      animate={{ scale: 1 }}
+                      transition={{ duration: 0.8, ease: "easeOut" }}
+                    >
+                      <img 
+                        src={trdoChartImg}
+                        alt="Tokenomics Distribution" 
+                        className="w-full h-full object-contain p-2"
+                        style={{
+                          filter: 'brightness(1.2) contrast(1.15)'
+                        }}
+                      />
+                    </motion.div>
+                    
+                    {/* Subtle overlay to enhance the chart */}
+                    <div className="absolute inset-0 rounded-full bg-gradient-to-br from-purple-500/10 to-pink-500/10"></div>
+                  </div>
+                </motion.div>
               </motion.div>
               
               {/* Static TRDO Text Overlay */}
-              <div className="absolute inset-0 flex items-center justify-center z-10 pointer-events-none">
+              <div className="absolute inset-0 flex items-center justify-center z-20 pointer-events-none">
                 <div className="text-5xl md:text-4xl font-black text-center">
                   <span className="bg-gradient-to-r from-purple-400 to-pink-500 bg-clip-text text-transparent drop-shadow-[0_0_8px_rgba(139,92,246,0.8)]">TRDO</span>
                 </div>
@@ -162,25 +209,7 @@ const TronadoTokenomics: React.FC = () => {
           </div>
         </div>
 
-        {/* Token Info Box */}
-        <div className="mt-12 bg-[#1a1139]/40 border border-purple-500/20 rounded-xl p-6 md:p-8">
-          <div className="flex flex-wrap gap-8 justify-around">
-            <div className="text-center">
-              <h5 className="text-purple-300 text-sm mb-2">Total Supply</h5>
-              <p className="text-2xl font-bold text-white">250 Million</p>
-            </div>
-            
-            <div className="text-center">
-              <h5 className="text-purple-300 text-sm mb-2">Network</h5>
-              <p className="text-2xl font-bold text-white">Polygon (Matic)</p>
-            </div>
-            
-            <div className="text-center">
-              <h5 className="text-purple-300 text-sm mb-2">Token Type</h5>
-              <p className="text-2xl font-bold text-white">Utility</p>
-            </div>
-          </div>
-        </div>
+        
       </div>
     </section>
   );
