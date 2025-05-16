@@ -1,5 +1,5 @@
 import { cn } from '../lib/utils';
-import onlyBgGif from '../assets/onlybg.gif';
+import monlyBgVideo from '../assets/monlybg.mp4';
 
 interface HeroSectionProps {
   className?: string;
@@ -12,12 +12,20 @@ const HeroSection = ({ className }: HeroSectionProps = {}) => {
       "relative flex flex-col items-center justify-center min-h-[100vh] overflow-hidden",
       className
     )}>
-      {/* Main background GIF */}
-      <div className="absolute inset-0 z-0 overflow-hidden" style={{
-        background: `url(${onlyBgGif}) no-repeat center center`,
-        backgroundSize: 'cover',
-        opacity: 1
-      }}></div>
+      {/* Main background Video */}
+      <div className="absolute inset-0 z-0 overflow-hidden">
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="absolute w-full h-full object-cover"
+          style={{ opacity: 1 }}
+        >
+          <source src={monlyBgVideo} type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+      </div>
       
       {/* Content container for any future content */}
       <div className="relative z-20 flex flex-col items-center justify-center h-full w-full">
