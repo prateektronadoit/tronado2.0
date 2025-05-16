@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import rocketImg from '../assets/LogoU.gif';
+import rocketVideo from '../assets/LogoU.mp4';
 
 export const RocketLaunchAnimation = ({ onAnimationComplete }: { onAnimationComplete: () => void }) => {
   const [showRocket, setShowRocket] = useState(true);
@@ -57,16 +57,20 @@ export const RocketLaunchAnimation = ({ onAnimationComplete }: { onAnimationComp
                 width: '100vw',
                 height: '100vh'
               }}>
-              <img
-                src={rocketImg}
-                alt="TRDO Logo"
+              <video
+                autoPlay
+                muted
+                playsInline
                 style={{
                   height: '100%',
                   width: '100%',
                   maxHeight: '100vh',
                   objectFit: 'contain'
                 }}
-              />
+              >
+                <source src={rocketVideo} type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
             </div>
 
           </motion.div>

@@ -145,7 +145,7 @@ const TronadoTokenomics: React.FC = () => {
               
               {/* Static TRDO Text Overlay */}
               <div className="absolute inset-0 flex items-center justify-center z-10 pointer-events-none">
-                <div className="text-5xl md:text-6xl font-black text-center">
+                <div className="text-5xl md:text-4xl font-black text-center">
                   <span className="bg-gradient-to-r from-purple-400 to-pink-500 bg-clip-text text-transparent drop-shadow-[0_0_8px_rgba(139,92,246,0.8)]">TRDO</span>
                 </div>
               </div>
