@@ -197,10 +197,10 @@ const TronadoHowItWorks: React.FC<TronadoHowItWorksProps> = ({ className }) => {
         </div>
 
         {/* Middle strip with animated planets */}
-        <div className="relative w-full py-8 overflow-hidden mb-8 mt-4">
+        <div className="relative w-full py-6 md:py-8 overflow-hidden mb-6 md:mb-8 mt-4">
           <div className="absolute inset-0 bg-gradient-to-r from-purple-900/20 via-blue-800/30 to-purple-900/20 backdrop-blur-sm rounded-lg"></div>
           
-          <div className="relative z-10 flex justify-between items-center max-w-5xl mx-auto px-4">
+          <div className="relative z-10 grid grid-cols-2 md:flex md:flex-row justify-between items-center max-w-5xl mx-auto px-2 md:px-4 gap-3 md:gap-0">
             {/* Planet 1 */}
             <motion.div 
               className="flex flex-col items-center text-center px-2"
@@ -209,7 +209,7 @@ const TronadoHowItWorks: React.FC<TronadoHowItWorksProps> = ({ className }) => {
               transition={{ duration: 0.5, delay: 0.2 }}
             >
               <motion.div 
-                className="text-5xl text-purple-400 mb-3"
+                className="text-3xl md:text-5xl text-purple-400 mb-2 md:mb-3"
                 animate={{ 
                   rotate: 360,
                   scale: [1, 1.1, 1]
@@ -235,7 +235,7 @@ const TronadoHowItWorks: React.FC<TronadoHowItWorksProps> = ({ className }) => {
               transition={{ duration: 0.5, delay: 0.4 }}
             >
               <motion.div 
-                className="text-5xl text-blue-400 mb-3"
+                className="text-3xl md:text-5xl text-blue-400 mb-2 md:mb-3"
                 animate={{ 
                   rotate: 360,
                   y: [0, -5, 0]
@@ -261,7 +261,7 @@ const TronadoHowItWorks: React.FC<TronadoHowItWorksProps> = ({ className }) => {
               transition={{ duration: 0.5, delay: 0.6 }}
             >
               <motion.div 
-                className="text-5xl text-indigo-400 mb-3"
+                className="text-3xl md:text-5xl text-indigo-400 mb-2 md:mb-3"
                 animate={{ 
                   rotate: -360,
                   scale: [1, 1.2, 1]
@@ -287,7 +287,7 @@ const TronadoHowItWorks: React.FC<TronadoHowItWorksProps> = ({ className }) => {
               transition={{ duration: 0.5, delay: 0.8 }}
             >
               <motion.div 
-                className="text-5xl text-fuchsia-400 mb-3"
+                className="text-3xl md:text-5xl text-fuchsia-400 mb-2 md:mb-3"
                 animate={{ 
                   rotate: 360,
                   x: [0, 5, 0]
@@ -313,7 +313,7 @@ const TronadoHowItWorks: React.FC<TronadoHowItWorksProps> = ({ className }) => {
               transition={{ duration: 0.5, delay: 1.0 }}
             >
               <motion.div 
-                className="text-5xl text-purple-500 mb-3"
+                className="text-3xl md:text-5xl text-purple-500 mb-2 md:mb-3"
                 animate={{ 
                   y: [0, -8, 0],
                   rotate: 360

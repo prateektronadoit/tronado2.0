@@ -118,12 +118,12 @@ const PlanetIcons = [
 
 // Custom wave path component
 const WavePath: React.FC<{progress: number}> = ({ progress }) => (
-  <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-4 z-0" style={{ top: '280px' }}>
+  <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-4 z-0" style={{ top: '280px', maxWidth: '2px' }}>
     <svg 
-      className="absolute h-[calc(100%-280px)] w-24 overflow-visible" 
+      className="absolute h-[calc(100%-280px)] w-12 md:w-24 overflow-visible pointer-events-none" 
       viewBox="0 0 100 1000" 
       preserveAspectRatio="none"
-      style={{ left: '-40px' }}
+      style={{ left: '-20px' }}
     >
       <defs>
         <linearGradient id="waveGradient" x1="0%" y1="0%" x2="0%" y2="100%">
@@ -136,22 +136,31 @@ const WavePath: React.FC<{progress: number}> = ({ progress }) => (
         d="M50,0 L50,1000"
         fill="none"
         stroke="url(#waveGradient)"
-        strokeWidth="4"
+        className="hidden md:block"
+        strokeWidth="2"
+        opacity="0.6"
+      />
+      <path
+        d="M50,0 L50,1000"
+        fill="none"
+        stroke="url(#waveGradient)"
+        strokeWidth="1"
         strokeLinecap="round"
         strokeDasharray="1000"
         strokeDashoffset={1000 - (progress * 1000)}
-        opacity="0.6"
+        className="md:hidden"
+        opacity="0.3"
       />
     </svg>
     
     {/* Glow effect */}
     <div 
-      className="absolute left-1/2 transform -translate-x-1/2 w-2 rounded-full blur-sm" 
+      className="absolute left-1/2 transform -translate-x-1/2 w-[1px] md:w-1 rounded-full blur-sm" 
       style={{ 
         height: `${progress * 100}%`,
         top: '0px',
         background: 'linear-gradient(to bottom, #8b5cf6, #7c3aed, #db2777)',
-        opacity: 0.4,
+        opacity: 0.2,
       }}
     ></div>
   </div>

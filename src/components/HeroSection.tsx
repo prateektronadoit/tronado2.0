@@ -31,7 +31,7 @@ const HeroSection = ({ className }: HeroSectionProps = {}) => {
 
   return (
     <section id="hero" className={cn(
-      "relative flex flex-col items-center justify-center min-h-[100vh] overflow-hidden bg-black transition-all duration-500",
+      "relative flex flex-col items-center justify-center min-h-[70vh] md:min-h-[100vh] overflow-hidden bg-black transition-all duration-500",
       isVisible ? 'opacity-100' : 'opacity-0 pointer-events-none transform -translate-y-20',
       className
     )}>
@@ -42,7 +42,7 @@ const HeroSection = ({ className }: HeroSectionProps = {}) => {
           loop
           muted
           playsInline
-          className="absolute top-0 left-0 w-full h-full"
+          className="absolute top-0 left-0 w-full h-full scale-[1.2] md:scale-100"
           style={{ 
             opacity: 1,
             objectFit: 'cover',
@@ -57,7 +57,7 @@ const HeroSection = ({ className }: HeroSectionProps = {}) => {
       </div>
       
       {/* Content container for any future content */}
-      <div className="relative z-20 flex flex-col items-center justify-center h-full w-full">
+      <div className="relative z-20 flex flex-col items-center justify-center h-full w-full px-4 md:px-0">
         {/* Hero content can be added here if needed */}
       </div>
 
